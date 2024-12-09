@@ -82,8 +82,11 @@
             margin-top: 20px;
         }
         canvas {
-            margin: 20px auto;
             display: block;
+            width: 100%; /* Largura ajustável */
+            max-width: 400px; /* Máximo permitido */
+            height: auto; /* Altura proporcional */
+            margin: 0 auto; /* Centralizar */
             background-color: #fff;
             border-radius: 10px;
         }
@@ -188,18 +191,29 @@
                 datasets: [{
                     label: 'Tamanhos Escolhidos',
                     data: [0, 0, 0, 0, 0, 0],
-                    backgroundColor: '#FFA500',
-                    borderColor: '#FF8C00',
+                    backgroundColor: ['#FF4500', '#FF8C00', '#FFD700', '#32CD32', '#1E90FF', '#9400D3'], // Cores personalizadas
+                    borderColor: '#000', // Cor das bordas (opcional)
                     borderWidth: 1
                 }]
             },
             options: {
                 responsive: true,
+                maintainAspectRatio: false, // Permitir ajuste de proporções
                 plugins: {
                     legend: { display: false },
+                },
+                scales: {
+                    x: {
+                        ticks: { color: '#FFA500' }, // Cor dos rótulos
+                    },
+                    y: {
+                        ticks: { color: '#FFA500' }, // Cor dos rótulos
+                        beginAtZero: true
+                    }
                 }
             }
         });
+
 
         // Abrir modal
         function showModal(message) {
