@@ -116,34 +116,35 @@
             }
         });
 
-        // Evento para enviar os dados do formulário
         form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const data = {
-                fullName: document.getElementById('fullName').value,
-                shirtName: document.getElementById('shirtName').value,
-                shirtSize: document.getElementById('shirtSize').value
-            };
+    e.preventDefault();
+    const data = {
+        fullName: document.getElementById('fullName').value,
+        shirtName: document.getElementById('shirtName').value,
+        shirtSize: document.getElementById('shirtSize').value
+    };
 
-            // Enviar para o Google Apps Script
-            const response = await fetch('https://script.google.com/macros/s/AKfycbw9A4lING_YlzQ0AK14mHGjLr51shYJ3JRm5aPWlWlw0Jm0wxrTc9M7Yt3OYtBJFQ7NmA/exec', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            });
-
-            if (response.ok) {
-                alert('Dados enviados com sucesso!');
-                form.reset();
-                updateStats();
-            } else {
-                alert('Erro ao enviar os dados. Tente novamente.');
-            }
+    try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbw9A4lING_YlzQ0AK14mHGjLr51shYJ3JRm5aPWlWlw0Jm0wxrTc9M7Yt3OYtBJFQ7NmA/exec', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            mode: 'no-cors', // Ignora CORS
+            body: JSON.stringify(data)
         });
+
+        // A resposta será "opaque" (inacessível) devido ao no-cors
+        alert('Dados enviados com sucesso!');
+        form.reset();
+    } catch (error) {
+        console.error('Erro ao enviar os dados:', error);
+        alert('Falha ao enviar os dados.');
+    }
+});
+
 
         // Atualizar as estatísticas
         async function updateStats() {
-            const response = await fetch('https://script.google.com/macros/s/AKfycbxfG311JnykgwzGx0tzKo9cAoqddncGLR9LnArlFf8lZksRsHqviewuNQVDCOXu2DElaw/exechttps://script.google.com/macros/s/AKfycbw9A4lING_YlzQ0AK14mHGjLr51shYJ3JRm5aPWlWlw0Jm0wxrTc9M7Yt3OYtBJFQ7NmA/exec?stats=true');
+            const response = await fetch('https://script.google.com/macros/s/AKfycbw9A4lING_YlzQ0AK14mHGjLr51shYJ3JRm5aPWlWlw0Jm0wxrTc9M7Yt3OYtBJFQ7NmA/exec?stats=true');
             const stats = await response.json();
 
             chart.data.datasets[0].data = stats;
