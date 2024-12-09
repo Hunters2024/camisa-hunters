@@ -7,7 +7,7 @@
     <style>
         body {
             background-color: #000;
-            color: #FFA500;
+            color: #b02224;
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
@@ -17,7 +17,7 @@
             margin: 20px auto;
             padding: 20px;
             border-radius: 10px;
-            background-color: #111;
+            background-color: #000;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
         }
         h1 {
@@ -38,25 +38,25 @@
             border-radius: 5px;
         }
         input, select {
-            background-color: #333;
-            color: #FFA500;
+            background-color: #fff;
+            color: #b02224;
             font-size: 1em;
         }
         button {
-            background-color: #FFA500;
+            background-color: #b02224;
             color: #000;
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #FF8C00;
+            background-color: #571214;
         }
         .image-container {
             display: flex;
             justify-content: space-between;
             gap: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
         .image-container img {
             width: 48%;
@@ -66,7 +66,17 @@
         }
         .image-container img:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(255, 165, 0, 0.5);
+            box-shadow: 0 4px 8px rgba(255, 25, 0, 0.5);
+        }
+        .image-caption {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 1.1em;
+            color: #fff;
+            background-color: #000;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
         .stats {
             margin-top: 20px;
@@ -74,7 +84,7 @@
         canvas {
             margin: 20px auto;
             display: block;
-            background-color: #333;
+            background-color: #fff;
             border-radius: 10px;
         }
 
@@ -92,8 +102,8 @@
             justify-content: center;
         }
         .modal-content {
-            background-color: #222;
-            color: #FFA500;
+            background-color: #fff;
+            color: #b02224;
             padding: 20px;
             text-align: center;
             border-radius: 10px;
@@ -126,6 +136,11 @@
             <img src="frente.jpg" alt="Camisa - Frente">
             <img src="verso.jpg" alt="Camisa - Verso">
         </div>
+        <div class="image-caption">
+            🏃‍♂️ Olá atleta, seja bem-vindo(a) ao formulário para novas aquisições do padrão Hunters!<br>
+            Estaremos disponibilizando até dia <b>10 de janeiro</b> para pagamento da mais nova versão limitada de aniversário de 1 ano dos Hunters!<br>
+            O pagamento vai até dia <b>10 de janeiro de 2025</b>, no valor de <b>R$ 50,00</b>. Garanta já a sua!!!
+        </div>
         <form id="shirtForm">
             <label for="fullName">Nome Completo</label>
             <input type="text" id="fullName" name="fullName" required>
@@ -146,7 +161,7 @@
             <button type="submit">Enviar</button>
         </form>
         <div class="stats">
-            <h2>Estatísticas</h2>
+            <h2>Apuração</h2>
             <canvas id="sizeChart" width="400" height="200"></canvas>
         </div>
     </div>
