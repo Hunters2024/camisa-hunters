@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hunters - Cadastro de Camisas</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #FFA500;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+        }
+        input, select {
+            background-color: #333;
+            color: #FFA500;
+        }
+        button {
+            background-color: #FFA500;
+            color: #000;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #FF8C00;
+        }
+        .image-container img {
+            width: 100%;
+            margin: 10px 0;
+        }
+        .stats {
+            margin-top: 20px;
+        }
+        canvas {
+            margin: 20px auto;
+            display: block;
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hunters - Cadastro de Camisas</h1>
+        <div class="image-container">
+            <img src="frente.jpg" alt="Camisa - Frente">
+            <img src="verso.jpg" alt="Camisa - Verso">
+        </div>
+        <form id="shirtForm">
+            <label for="fullName">Nome Completo</label>
+            <input type="text" id="fullName" name="fullName" required>
+
+            <label for="shirtName">Nome na Camisa</label>
+            <input type="text" id="shirtName" name="shirtName" required>
+
+            <label for="shirtSize">Tamanho da Camisa</label>
+            <select id="shirtSize" name="shirtSize" required>
+                <option value="PP">PP</option>
+                <option value="P">P</option>
+                <option value="M">M</option>
+                <option value="G">G</option>
+                <option value="GG">GG</option>
+                <option value="EXG">EXG</option>
+            </select>
+
+            <button type="submit">Enviar</button>
+        </form>
+        <div class="stats">
+            <h2>Estatísticas</h2>
+            <canvas id="sizeChart" width="400" height="200"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const form = document.getElementById('shirtForm');
+        const sizeChart = document.getElementById('sizeChart').getContext('2d');
+
+        // Configurar o gráfico
+        const chart = new Chart(sizeChart, {
+            type: 'bar',
+            data: {
+                labels: ['PP', 'P', 'M', 'G', 'GG', 'EXG'],
+                datasets: [{
+                    label: 'Tamanhos Escolhidos',
+                    data: [0, 0, 0, 0, 0],
+                    backgroundColor: '#FFA500',
+                    borderColor: '#FF8C00',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                }
+            }
+        });
+
+        // Evento para enviar os dados do formulário
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const data = {
+                fullName: document.getElementById('fullName').value,
+                shirtName: document.getElementById('shirtName').value,
+                shirtSize: document.getElementById('shirtSize').value
+            };
+
+            // Enviar para o Google Apps Script
+            const response = await fetch('https://script.google.com/macros/s/AKfycbw9A4lING_YlzQ0AK14mHGjLr51shYJ3JRm5aPWlWlw0Jm0wxrTc9M7Yt3OYtBJFQ7NmA/exec', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+
+            if (response.ok) {
+                alert('Dados enviados com sucesso!');
+                form.reset();
+                updateStats();
+            } else {
+                alert('Erro ao enviar os dados. Tente novamente.');
+            }
+        });
+
+        // Atualizar as estatísticas
+        async function updateStats() {
+            const response = await fetch('https://script.google.com/macros/s/AKfycbxfG311JnykgwzGx0tzKo9cAoqddncGLR9LnArlFf8lZksRsHqviewuNQVDCOXu2DElaw/exechttps://script.google.com/macros/s/AKfycbw9A4lING_YlzQ0AK14mHGjLr51shYJ3JRm5aPWlWlw0Jm0wxrTc9M7Yt3OYtBJFQ7NmA/exec?stats=true');
+            const stats = await response.json();
+
+            chart.data.datasets[0].data = stats;
+            chart.update();
+        }
+
+        updateStats();
+    </script>
+</body>
+</html>
