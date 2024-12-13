@@ -226,6 +226,8 @@
             try {
                 const response = await fetch('https://script.google.com/macros/s/AKfycbw9A4lING_YlzQ0AK14mHGjLr51shYJ3JRm5aPWlWlw0Jm0wxrTc9M7Yt3OYtBJFQ7NmA/exec?stats=true');
                 const stats = await response.json();
+                
+                console.log('Dados recebidos da API:', stats); // <-- Verifique os dados aqui
 
                 // Atualiza os valores do gráfico
                 chart.data.datasets[0].data = stats;
@@ -233,12 +235,14 @@
 
                 // Calcula o total e exibe no HTML
                 const total = stats.reduce((sum, value) => sum + value, 0);
+                console.log('Total calculado:', total); // <-- Verifique o total aqui
                 document.getElementById('totalValue').textContent = total;
 
             } catch (error) {
                 console.error('Erro ao buscar estatísticas:', error);
             }
         }
+
 
         // Inicializar o gráfico com os dados mais recentes
         updateStats();
