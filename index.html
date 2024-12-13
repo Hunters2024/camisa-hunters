@@ -172,6 +172,9 @@
                     </ul>
                 </div>
             </div>
+            <div id="totalCount" style="text-align: center; color: #ffffff; font-size: 1.2em; margin-top: 10px;">
+                Total Apurado: <span id="totalValue">0</span>
+            </div>            
         </div>        
     </div>
 
@@ -224,8 +227,14 @@
                 const response = await fetch('https://script.google.com/macros/s/AKfycbw9A4lING_YlzQ0AK14mHGjLr51shYJ3JRm5aPWlWlw0Jm0wxrTc9M7Yt3OYtBJFQ7NmA/exec?stats=true');
                 const stats = await response.json();
 
-                chart.data.datasets[0].data = stats; // Atualiza os valores do gráfico
+                // Atualiza os valores do gráfico
+                chart.data.datasets[0].data = stats;
                 chart.update();
+
+                // Calcula o total e exibe no HTML
+                const total = stats.reduce((sum, value) => sum + value, 0);
+                document.getElementById('totalValue').textContent = total;
+
             } catch (error) {
                 console.error('Erro ao buscar estatísticas:', error);
             }
