@@ -5,90 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hunters - Cadastro de Camisas</title>
     <style>
-        body {
-            background-color: #000;
-            color: #b02224;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
+    body {
+        background-color: #000;
+        color: #b02224;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #000;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    }
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 1.8em;
+    }
+    .stats {
+        margin-top: 10px; /* Reduzido para aproximar o gráfico */
+    }
+    .stats > div {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start; /* Garante alinhamento no topo */
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+    canvas {
+        display: block;
+        flex: 1;
+        max-width: 60%; /* Ajusta a largura do gráfico */
+        height: auto; /* Altura proporcional */
+        margin: 0 auto; /* Centraliza em telas menores */
+        background-color: #fff;
+        border-radius: 10px;
+    }
+    #chartLegend {
+        flex: 1;
+        max-width: 35%;
+        color: #FFA500;
+        font-size: 1em;
+        margin: 10px;
+    }
+    #chartLegend ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    #chartLegend li {
+        margin-bottom: 5px;
+        display: flex;
+        align-items: center;
+    }
+    #chartLegend span {
+        display: inline-block;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+
+    /* Responsividade */
+    @media (max-width: 600px) {
         .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: #000;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
-        }
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-        }
-        .stats {
-            margin-top: 10px; /* Reduzido para aproximar o gráfico */
+            width: 90%;
+            padding: 15px;
         }
         .stats > div {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start; /* Garante alinhamento no topo */
-            gap: 10px;
-            flex-wrap: wrap;
+            flex-direction: column; /* Empilha o gráfico e a legenda */
+            align-items: center; /* Centraliza os elementos */
         }
         canvas {
-            display: block;
-            flex: 1;
-            max-width: 60%; /* Ajusta a largura do gráfico */
-            height: auto; /* Altura proporcional */
-            margin: 0 auto; /* Centraliza em telas menores */
-            background-color: #fff;
-            border-radius: 10px;
+            max-width: 100%; /* O gráfico ocupa toda a largura */
         }
         #chartLegend {
-            flex: 1;
-            max-width: 35%;
-            color: #FFA500;
-            font-size: 1em;
-            margin: 10px;
+            max-width: 100%; /* A legenda ocupa toda a largura */
+            text-align: center; /* Centraliza o texto */
         }
-        #chartLegend ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        #chartLegend li {
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-        }
-        #chartLegend span {
-            display: inline-block;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            margin-right: 5px;
-        }
-    
-        /* Responsividade */
-        @media (max-width: 600px) {
-            .container {
-                width: 90%;
-                padding: 15px;
-            }
-            .stats > div {
-                flex-direction: column; /* Empilha o gráfico e a legenda */
-                align-items: center; /* Centraliza os elementos */
-            }
-            canvas {
-                max-width: 100%; /* O gráfico ocupa toda a largura */
-            }
-            #chartLegend {
-                max-width: 100%; /* A legenda ocupa toda a largura */
-                text-align: center; /* Centraliza o texto */
-            }
-        }
-    </style>
-    
+    }
+</style>
+
 </head>
 <body>
     <div class="container">
