@@ -32,10 +32,10 @@
         }
         input, select, button {
             width: 100%;
+            padding: 10px;
             margin-bottom: 15px;
             border: none;
             border-radius: 5px;
-            padding: 40px;
         }
         input, select {
             background-color: #fff;
@@ -227,24 +227,20 @@
                 const response = await fetch('https://script.google.com/macros/s/AKfycbw9A4lING_YlzQ0AK14mHGjLr51shYJ3JRm5aPWlWlw0Jm0wxrTc9M7Yt3OYtBJFQ7NmA/exec?stats=true');
                 const stats = await response.json();
 
-                console.log('Dados da API:', stats); // Exibe os dados no console para verificação
-
                 // Atualiza os valores do gráfico
                 chart.data.datasets[0].data = stats;
-                chart.update();
 
-                // Calcula o total
-                const total = stats.reduce((sum, value) => sum + Number(value), 0); // Converte valores para números
-                console.log('Total calculado:', total); // Log para verificar o cálculo
-
-                // Exibe o total no HTML
+                // Calcula o total e exibe no HTML
+                const total = stats.reduce((sum, value) => sum + value, 0);
                 document.getElementById('totalValue').textContent = total;
+
+                chart.data.datasets[0].data = stats; // Atualiza os valores do gráfico
+                chart.update();
+                stats.update();
             } catch (error) {
                 console.error('Erro ao buscar estatísticas:', error);
             }
         }
-
-
 
         // Inicializar o gráfico com os dados mais recentes
         updateStats();
