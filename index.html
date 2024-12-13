@@ -109,10 +109,20 @@
             margin-bottom: 10px;
         }
 
-        /* Responsividade */
+        /* Atualizando responsividade */
         @media (max-width: 600px) {
+            body {
+                padding: 10px; /* Adicionar padding para bordas em dispositivos pequenos */
+            }
             .container {
-                width: 90%;
+                width: 100%; /* Use a largura completa disponível */
+                margin: 10px auto; /* Ajuste centralizado */
+            }
+            form label {
+                font-size: 1em; /* Fontes menores para labels */
+            }
+            input, select, button {
+                font-size: 0.9em; /* Ajustar tamanhos */
             }
             .image-container img {
                 width: 100%;
@@ -227,20 +237,24 @@
                 const response = await fetch('https://script.google.com/macros/s/AKfycbw9A4lING_YlzQ0AK14mHGjLr51shYJ3JRm5aPWlWlw0Jm0wxrTc9M7Yt3OYtBJFQ7NmA/exec?stats=true');
                 const stats = await response.json();
 
-                // Atualiza os valores do gráfico
+                if (!stats || stats.length !== 6) {
+                    throw new Error('Dados inválidos recebidos');
+                }
+
+                // Atualiza os dados no gráfico
                 chart.data.datasets[0].data = stats;
 
-                // Calcula o total e exibe no HTML
+                // Atualiza o total
                 const total = stats.reduce((sum, value) => sum + value, 0);
                 document.getElementById('totalValue').textContent = total;
 
-                chart.data.datasets[0].data = stats; // Atualiza os valores do gráfico
                 chart.update();
-                stats.update();
             } catch (error) {
                 console.error('Erro ao buscar estatísticas:', error);
+                document.getElementById('totalValue').textContent = 'Erro ao carregar';
             }
         }
+
 
         // Inicializar o gráfico com os dados mais recentes
         updateStats();
