@@ -134,10 +134,22 @@
     </style>
 </head>
 <body>
-    <audio autoplay loop>
-        <source src="Caçadores de Vitória - Hunters.mp3" type="audio/mp3">
+    <audio id="backgroundMusic" autoplay loop muted>
+        <source src="Caçadores de Vitória - Hunters.mp3" type="audio/mpeg">
         Seu navegador não suporta o elemento de áudio.
-    </audio>    
+    </audio>
+
+    <script>
+        const music = document.getElementById('backgroundMusic');
+
+        // Remove o mute após a página carregar
+        window.addEventListener('load', () => {
+            music.muted = false;
+            music.play().catch((error) => {
+                console.log("Autoplay bloqueado, interação do usuário necessária.");
+            });
+        });
+    </script>
     <div class="container">
         <h1>Hunters - Cadastro de Camisas</h1>
         <div class="image-container">
