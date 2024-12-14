@@ -134,7 +134,7 @@
     </style>
 </head>
 <body>
-    <audio id="backgroundMusic" autoplay loop muted>
+    <audio id="backgroundMusic" autoplay loop>
         <source src="Caçadores de Vitória - Hunters.mp3" type="audio/mpeg">
         Seu navegador não suporta o elemento de áudio.
     </audio>
@@ -142,12 +142,23 @@
     <script>
         const music = document.getElementById('backgroundMusic');
 
-        // Remove o mute após a página carregar
+        // Força a reprodução do áudio ao carregar
         window.addEventListener('load', () => {
-            music.muted = false;
-            music.play().catch((error) => {
-                console.log("Autoplay bloqueado, interação do usuário necessária.");
+            music.play().then(() => {
+                console.log("Áudio reproduzido automaticamente.");
+            }).catch((error) => {
+                console.error("Falha ao reproduzir o áudio:", error);
+                alert("O navegador bloqueou a reprodução automática. Por favor, clique em qualquer lugar para ativar o áudio.");
             });
+        });
+
+        // Garante a reprodução ao clicar na página
+        document.body.addEventListener('click', () => {
+            if (music.paused) {
+                music.play().catch((error) => {
+                    console.error("Erro ao tentar reproduzir o áudio:", error);
+                });
+            }
         });
     </script>
     <div class="container">
