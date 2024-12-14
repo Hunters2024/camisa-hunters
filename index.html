@@ -146,9 +146,6 @@
         window.addEventListener('load', () => {
             music.play().then(() => {
                 console.log("Áudio reproduzido automaticamente.");
-            }).catch((error) => {
-                console.error("Falha ao reproduzir o áudio:", error);
-                alert("O navegador bloqueou a reprodução automática. Por favor, clique em qualquer lugar para ativar o áudio.");
             });
         });
 
