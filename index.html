@@ -262,7 +262,7 @@
         // Função para atualizar as estatísticas do gráfico
         async function updateStats() {
             try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbz1EPmiW3umFNbuzGpzA1a8s6BJU3-e6XlFKvuFKr395vd9_tf_Xn6ltkXxAszxcGY6Kw/exec?stats=true');
+                const response = await fetch('https://script.google.com/macros/s/AKfycbwJgb2N2Tm1934myJ7bmLwiaGsJLmf_1Fq7_dcnDcyDF8AS50ig49YGnKCUfam2UiAohg/exec?stats=true');
                 const stats = await response.json();
 
                 if (!stats || stats.length !== 6) {
@@ -310,7 +310,7 @@
             };
 
             try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbz1EPmiW3umFNbuzGpzA1a8s6BJU3-e6XlFKvuFKr395vd9_tf_Xn6ltkXxAszxcGY6Kw/exec', {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbwJgb2N2Tm1934myJ7bmLwiaGsJLmf_1Fq7_dcnDcyDF8AS50ig49YGnKCUfam2UiAohg/exec', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     mode: 'no-cors',
@@ -331,7 +331,7 @@
         // Atualizar estatísticas
         async function updateStats() {
             try {
-                const response = await fetch('https://script.google.com/macros/s/AKfycbz1EPmiW3umFNbuzGpzA1a8s6BJU3-e6XlFKvuFKr395vd9_tf_Xn6ltkXxAszxcGY6Kw/exec?stats=true');
+                const response = await fetch('https://script.google.com/macros/s/AKfycbwJgb2N2Tm1934myJ7bmLwiaGsJLmf_1Fq7_dcnDcyDF8AS50ig49YGnKCUfam2UiAohg/exec?stats=true');
                 const stats = await response.json();
                 chart.data.datasets[0].data = stats;
                 chart.update();
