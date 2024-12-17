@@ -108,6 +108,22 @@
             font-size: 1.5em;
             margin-bottom: 10px;
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .table-container {
+            margin-top: 20px;
+        }
 
         /* Atualizando responsividade */
         @media (max-width: 600px) {
@@ -190,6 +206,69 @@
 
             <button type="submit">Enviar</button>
         </form>
+        <div class="table-container">
+            <h2>Tabela de Medidas</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Tamanho</th>
+                        <th>Manga (cm)</th>
+                        <th>Comprimento (cm)</th>
+                        <th>Largura (cm)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PP</td>
+                        <td>61</td>
+                        <td>69</td>
+                        <td>46</td>
+                    </tr>
+                    <tr>
+                        <td>P</td>
+                        <td>63</td>
+                        <td>72</td>
+                        <td>49</td>
+                    </tr>
+                    <tr>
+                        <td>M</td>
+                        <td>65</td>
+                        <td>73</td>
+                        <td>53</td>
+                    </tr>
+                    <tr>
+                        <td>G</td>
+                        <td>67</td>
+                        <td>76</td>
+                        <td>56</td>
+                    </tr>
+                    <tr>
+                        <td>GG</td>
+                        <td>69</td>
+                        <td>79</td>
+                        <td>61</td>
+                    </tr>
+                    <tr>
+                        <td>XG</td>
+                        <td>71</td>
+                        <td>81</td>
+                        <td>65</td>
+                    </tr>
+                    <tr>
+                        <td>XXG</td>
+                        <td>73</td>
+                        <td>84</td>
+                        <td>71</td>
+                    </tr>
+                    <tr>
+                        <td>EXG</td>
+                        <td>75</td>
+                        <td>89</td>
+                        <td>71</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         <div class="stats">
             <h2>Apuração</h2>
             <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
