@@ -183,6 +183,8 @@
                 <option value="M">M</option>
                 <option value="G">G</option>
                 <option value="GG">GG</option>
+                <option value="GG">XG</option>
+                <option value="GG">XXG</option>
                 <option value="EXG">EXG</option>
             </select>
 
@@ -230,9 +232,9 @@
         const chart = new Chart(sizeChart, {
             type: 'pie', // Alterado para gráfico de pizza
             data: {
-                labels: ['PP', 'P', 'M', 'G', 'GG', 'EXG'],
+                labels: ['PP', 'P', 'M', 'G', 'GG', 'XG', 'XXG','EXG'],
                 datasets: [{
-                    data: [0, 0, 0, 0, 0, 0], // Quantidades iniciais
+                    data: [0, 0, 0, 0, 0, 0, 0, 0], // Quantidades iniciais
                     backgroundColor: ['#FF4500', '#FF8C00', '#FFD700', '#32CD32', '#1E90FF', '#9400D3'], // Cores para cada tamanho
                     borderWidth: 1
                 }]
